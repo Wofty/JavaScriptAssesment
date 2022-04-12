@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme park tickets</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+</head>
+
+<body>
+    <form class="m-3">
+        <fieldset>
+
+            <!-- Name -->
+            <div class="field">
+                <label for="name" class="label">Name:</label>
+                <div class="control">
+                    <input class="input" type="text" id="name" placeholder="Name">
+                </div>
+            </div>
+
+            <!-- Tickets -->
+            <div class="field">
+                <label for="fast" class="label">Tickets:</label>
+                <div class="control">
+                    <div class="select">
+                        <select id="fast">
+                            <option value="NoPass">No fast pass</option>
+                            <option value="ThreePass">3-ride fast pass</option>
+                            <option value="FivePass">5-ride fast pass</option>
+                            <option value="UltimatePass">Ultimate fast pass</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ticket cost -->
+            <div class="field">
+                <label for="ticketCost" class="label">Ticket cost:</label>
+                <span id="ticketCost">£0.00 </span>
+            </div>
+
+            <!-- Tickets required -->
+            <div class="field">
+                <label for="ticketsRequired" class="label">Tickets required:</label>
+                <div class="control">
+                    <input class="input" type="number" id="ticketsRequired" min=1 placeholder="Tickets" required>
+                </div>
+            </div>
+
+            <!-- Delivery method -->
+            <div class="field">
+                <label for="delivery" class="label">Delivery method: </label>
+                <div class="control">
+                    <input type="radio" id="eticket" name="delivery" value="eticket" checked>
+                    <label class="radio" for="eticket">e-ticket</label>
+                </div>
+
+                <div class="control">
+                    <input type="radio" id="collect" name="delivery" value="collect">
+                    <label class="radio" for="collect">Collect</label>
+                </div>
+
+                <div class="control">
+                    <input type="radio" id="post" name="delivery" value="post">
+                    <label class="radio" for="post">Post</label>
+                </div>
+            </div>
+
+            <!-- Delivery cost -->
+            <div class="field">
+                <label for="deliveryCost" class="label">Delivery cost:</label>
+                <span id="deliveryCost">£0.00 </span>
+            </div>
+
+            <!-- button -->
+            <div class="field">
+                <div class="control">
+                    <button name="order" id="order" class="button is-link">Order</button>
+                </div>
+            </div>
+
+            <!-- Ticket details -->
+            <div class="field">
+                <label for="ticketDetails" class="label">Ticket details:</label>
+                <span id="ticketDetails"></span>
+            </div>
+    </form>
+</body>
+
+</html>
