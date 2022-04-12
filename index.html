@@ -6,17 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Theme park tickets</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <form class="m-3">
+    <form id="theForm" class="m-3">
         <fieldset>
 
             <!-- Name -->
             <div class="field">
                 <label for="name" class="label">Name:</label>
                 <div class="control">
-                    <input class="input" type="text" id="name" placeholder="Name">
+                    <input class="input" type="text" id="inputName" placeholder="Name">
                 </div>
             </div>
 
@@ -25,7 +26,7 @@
                 <label for="fast" class="label">Tickets:</label>
                 <div class="control">
                     <div class="select">
-                        <select id="fast">
+                        <select id="fastPass">
                             <option value="NoPass">No fast pass</option>
                             <option value="ThreePass">3-ride fast pass</option>
                             <option value="FivePass">5-ride fast pass</option>
@@ -45,7 +46,8 @@
             <div class="field">
                 <label for="ticketsRequired" class="label">Tickets required:</label>
                 <div class="control">
-                    <input class="input" type="number" id="ticketsRequired" min=1 placeholder="Tickets" required>
+                    <input class="input" type="number" id="ticketsRequired" value="0" min=1 placeholder="Tickets"
+                        required>
                 </div>
             </div>
 
@@ -87,6 +89,12 @@
                 <span id="ticketDetails"></span>
             </div>
     </form>
+
+
+
+    <h1>output</h1>
+    <div id="results"></div>
+    <script src="main.js"></script>
 </body>
 
 </html>
