@@ -23,7 +23,7 @@ deliveryOption.forEach((item) => item.addEventListener("change", checkDeliveryOp
 
 //default values on load
 function onLoad() {
-  noPass = 29;
+  noPass = 10;
   ticketCost = 0;
   ticketCostOutput.innerText = `£${noPass.toFixed(2)}`;
   deliveryCost.innerText = `£${ticketCost.toFixed(2)}`;
@@ -36,7 +36,7 @@ function checkTicketPrice() {
   if (ticket == "NoPass") {
     price = 29;
   } else if (ticket == "ThreePass") {
-    price = 34;
+    price = 35;
   } else if (ticket == "FivePass") {
     price = 37;
   } else {
@@ -52,7 +52,7 @@ function checkDeliveryOption() {
     delivery = 0;
   } else if (this.value == "collect") {
     delivery = 1.5;
-  } else {
+  } else if (this.value == "post") {
     delivery = 3.99;
   }
   deliveryCost.innerText = `£ ${delivery.toFixed(2)}`;
@@ -61,11 +61,30 @@ function checkDeliveryOption() {
 
 //calculate the total of the tickets
 const isTotal = function () {
-  let nr = numberOfTickets.value;
+  let ticketNr = numberOfTickets.value;
   let price = checkTicketPrice();
-  let delivery = checkDeliveryOption();
-  return nr * price + delivery;
+  return ticketNr * price;
 };
+
+//check the sale price
+function checkTheSale() {
+  let total = isTotal();
+  let ticketNr = numberOfTickets.value;
+  if (ticketNr <= 5) {
+    total = total;
+  } else if (ticketNr > 5 && ticketNr < 10) {
+    total = total * 0.9;
+  } else if (ticketNr >= 10) {
+    total = total * 0.85;
+  }
+  return total;
+}
+
+function totalPriceWithDel() {
+  let price = checkTheSale();
+  let delivery = checkDeliveryOption();
+  return price + delivery;
+}
 
 //the final output and the order
 function calculateOrder(event) {
@@ -73,16 +92,13 @@ function calculateOrder(event) {
     event.preventDefault();
     let clientName = txtName.value;
     let total = isTotal();
-    results.innerText = `this is his name: ${clientName + total}`;
+    let discount = checkTheSale();
+
+    results.innerHTML = `
+    <p class="clientName">${clientName}</p>
+    <p>${total}</p>
+    <p>${discount}</p>
+    <p>${total - discount.toFixed(2)}</p>
+    `;
   }
 }
-
-/* function calculateOrder(event) {
-  if (theForm.checkValidity()) {
-    event.preventDefault();
-    let clientName = inputName.value;
-
-    results.innerHTML = `<h1>this is a title</h1>
-    <p>${clientName}</p>`;
-  }
-} */

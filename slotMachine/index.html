@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit machine</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- images adapted from https://www.etsy.com/uk/listing/529180151/animal-face-clipart-animal-head-clipart?gpla=1&gao=1&&utm_source=google&utm_medium=cpc&utm_campaign=shopping_uk_en_gb_e-art_and_collectibles-other&utm_custom1=_k_Cj0KCQiAqo3-BRDoARIsAE5vnaIoRDr9s4PSG12d2sqKl0RfuTqNUX0NvUnr82P8vAdZqzKBHOY_y_QaAlgpEALw_wcB_k_&utm_content=go_326235168_20236597368_88507312608_pla-116591723129_c__529180151engb_169778810&utm_custom2=326235168&gclid=Cj0KCQiAqo3-BRDoARIsAE5vnaIoRDr9s4PSG12d2sqKl0RfuTqNUX0NvUnr82P8vAdZqzKBHOY_y_QaAlgpEALw_wcB -->
+</head>
+
+<body>
+    <div class="container is-max-desktop">
+        <section class="columns is-mobile m-2" id="labels">
+            <p class="column mr-1" id="creditLabel">Credit</p>
+            <p class="column ml-1" id="winningsLabel">Winnings</p>
+        </section>
+
+        <section class="columns is-mobile m-2" id="values">
+            <p class="column mr-1 pt-3" id="creditValue">0</p>
+            <p class="column ml-1 pt-3" id="winningsValue">0</p>
+        </section>
+
+        <section class="columns is-mobile m-1" id="reels">
+            <div class="column p-0 m-1">
+                <figure class="image is-square">
+                    <img id="reel1" src="images/zebra.png" alt="animal">
+                </figure>
+            </div>
+
+            <div class="column p-0 m-1">
+                <figure class="image is-square">
+                    <img id="reel2" src="images/lion.png" alt="animal">
+                </figure>
+            </div>
+
+            <div class="column p-0 m-1">
+                <figure class="image is-square ">
+                    <img id="reel3" src="images/monkey.png" alt="animal">
+                </figure>
+            </div>
+        </section>
+
+        <p class="mx-2 p-2" id="output">Message </p>
+
+        <section class="columns is-mobile m-2" id="buttons">
+            <button type="button" disabled id="spin" class="column ml-0">Spin</button>
+            <button type="button" id="credit" class="column mx-1">Credit</button>
+            <button type="button" disabled id="collect" class="column mr-0">Collect</button>
+        </section>
+
+
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>
