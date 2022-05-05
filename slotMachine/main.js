@@ -1,6 +1,7 @@
 //variables
 let creditCount;
 let winnings;
+let finalWinnings;
 
 //labels
 const labels = document.getElementById('labels');
@@ -37,6 +38,7 @@ btnCollect.addEventListener('click', collect);
 function onload() {
     creditCount = 0;
     winnings = 0;
+    output.innerText = ``;
     imageOne();
     imageTwo();
     imageTree();
@@ -44,7 +46,6 @@ function onload() {
 
 let slotImage = [
     'bear.png', //
-    'cat_cropped.jpg',
     'giraffe.png',
     'hippo.png',
     'hyena.png',
@@ -59,19 +60,19 @@ let slotImage = [
 ];
 //randomly displays the images on the page
 function imageOne() {
-    let img = Math.ceil(Math.random() * 13) - 1;
+    let img = Math.ceil(Math.random() * 4) - 1;
     reel1.setAttribute('src', `images/${slotImage[img]}`);
     return img;
 }
 
 function imageTwo() {
-    let img = Math.ceil(Math.random() * 13) - 1;
+    let img = Math.ceil(Math.random() * 4) - 1;
     reel2.setAttribute('src', `images/${slotImage[img]}`);
     return img;
 }
 
 function imageTree() {
-    let img = Math.ceil(Math.random() * 13) - 1;
+    let img = Math.ceil(Math.random() * 4) - 1;
     reel3.setAttribute('src', `images/${slotImage[img]}`);
     return img;
 }
@@ -81,23 +82,23 @@ function checkCreditWinnings() {
     let images = [imageOne(), imageTwo(), imageTree()];
     if (images[0] === images[1] && images[1] === images[2]) {
         winnings += 10;
-        output.innerText = `You just won another 10 `;
+        output.innerText = `You just won £10 `;
         checkCredit();
     } else if (images[1] === images[2]) {
         winnings += 5;
-        output.innerText = `You just won another 5`;
+        output.innerText = `You just won £5`;
         checkCredit();
+    } else {
+        output.innerText = ``;
     }
 }
 //output results
 
 function checkCredit() {
-    if (creditCount > 0) {
-        creditCount -= 1;
-    } else if (creditCount === 0) {
+    if (creditCount === 0) {
         btnSpin.setAttribute('disabled', true);
     }
-    winningsValues.innerText = `${winnings}`;
+    winningsValues.innerText = `£${winnings}`;
     creditValue.innerText = `${creditCount}`;
 }
 //check the conditions for adding winnings
@@ -105,7 +106,7 @@ function collectBtnActive() {
     if (winnings > 0) {
         btnCollect.removeAttribute('disabled');
     } else {
-        btnCollect.setAttribute('disabled', false);
+        btnCollect.setAttribute('disabled', true);
     }
 }
 //add credit
@@ -113,9 +114,11 @@ function credit() {
     creditCount += 2;
     btnSpin.removeAttribute('disabled');
     creditValue.innerText = `${creditCount}`;
+    output.innerText = `Good Luck!`;
 }
 //collect winnings
 function collect() {
+    finalWinnings = winnings;
     creditCount = 0;
     winnings = 0;
     imageOne();
@@ -123,10 +126,11 @@ function collect() {
     imageTree();
     checkCredit();
     collectBtnActive();
-    output.innerText = `Message`;
+    output.innerText = `You collected £${finalWinnings} - Press Credit to add more credit.`;
 }
-
+//active spin if user has credits
 function spin() {
+    creditCount -= 1;
     checkCreditWinnings();
     checkCredit();
     collectBtnActive();
